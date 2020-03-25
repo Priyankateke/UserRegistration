@@ -1,13 +1,13 @@
+
 #!/bin/bash -x
-shopt -s extglob
 
 echo "Welcome To User Registration"
 
 #Patterns
-namePattern="^[A-Z][a-z]{2,}$"
-emailPattern="^([a-zA-Z]{3,}([.|_|+|-]?[a-zA-Z0-9]+)?[@][a-zA-Z0-9]+[.][a-zA-Z]{2,3}([.]?[a-zA-Z]{2,3})?)$"
-mobileNumberPattern="^[0-9]{1,3}[' '][0-9]{10}$"
-passwordAtLeastEightCharacterLong="[a-z]{8,}"
+NAME_PATTERN="^[A-Z][a-z]{2,}$"
+EMAIL_PATTERN="^([a-zA-Z]{3,}([.|_|+|-]?[a-zA-Z0-9]+)?[@][a-zA-Z0-9]+[.][a-zA-Z]{2,3}([.]?[a-zA-Z]{2,3})?)$"
+MOBILE_NUMBER_PATTERN="^[0-9]{1,3}[' '][0-9]{10}$"
+PASSWORD_AT_LEAST_ONE_UPPER_CASE_CHARACTER="^[a-zA-Z0-9]*(.*[A-Z].*{1}+)[a-zA-Z0-9]*{7,40}$"
 
 #Validating user details
 function validateUserDetails()
@@ -19,20 +19,20 @@ function validateUserDetails()
 #Validating user mobile numbers
 function validateUserMobileNumber()
 {
-	[[ $mobileNumber =~ $mobileNumberPattern ]] && echo "Valid Mobile Number" || echo "Invalid Mobile Number"
+	[[ $mobileNumber =~ $MOBILE_NUMBER_PATTERN ]] && echo "Valid Mobile Number" || echo "Invalid Mobile Number"
 }
 
 read -p "Enter First Name : " firstName
-validateUserDetails $firstName $namePattern
+validateUserDetails $firstName $NAME_PATTERN
 
 read -p "Enter Last Name : " lastName
-validateUserDetails $lastName $namePattern
+validateUserDetails $lastName $NAME_PATTERN
 
 read -p "Enter Email Id : " emailId
-validateUserDetails $emailId $emailPattern
+validateUserDetails $emailId $EMAIL_PATTERN
 
 read -p "Enter Mobile Number : " mobileNumber
-validateUserMobileNumber $mobileNumber $mobileNumberPattern
+validateUserMobileNumber $mobileNumber $MOBILE_NUMBER_PATTERN
 
-read -p "Enter Password(At least 8 characters long)  : " password
-validateUserDetails $password $passwordAtLeastEightCharacterLong
+read -p "Enter Password(At least 8 characters long and at least 1 upper case character)  : " password
+validateUserDetails $password $PASSWORD_AT_LEAST_ONE_UPPER_CASE_CHARACTER
