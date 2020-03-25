@@ -7,7 +7,7 @@ echo "Welcome To User Registration"
 NAME_PATTERN="^[A-Z][a-z]{2,}$"
 EMAIL_PATTERN="^([a-zA-Z]{3,}([.|_|+|-]?[a-zA-Z0-9]+)?[@][a-zA-Z0-9]+[.][a-zA-Z]{2,3}([.]?[a-zA-Z]{2,3})?)$"
 MOBILE_NUMBER_PATTERN="^[0-9]{1,3}[' '][0-9]{10}$"
-PASSWORD_AT_LEAST_ONE_UPPER_CASE_CHARACTER="^[a-zA-Z0-9]*(.*[A-Z].*{1}+)[a-zA-Z0-9]*{7,40}$"
+PASSWORD_AT_LEAST_ONE_UPPER_CASE_CHARACTER_ONE_NUMERIC="^[a-zA-Z0-9]*(.*[A-Z].*{1}+)(.*[0-9].*{1}+)[a-zA-Z0-9]*{7,40}$"
 
 #Validating user details
 function validateUserDetails()
@@ -34,5 +34,5 @@ validateUserDetails $emailId $EMAIL_PATTERN
 read -p "Enter Mobile Number : " mobileNumber
 validateUserMobileNumber $mobileNumber $MOBILE_NUMBER_PATTERN
 
-read -p "Enter Password(At least 8 characters long and at least 1 upper case character)  : " password
-validateUserDetails $password $PASSWORD_AT_LEAST_ONE_UPPER_CASE_CHARACTER
+read -p "Enter Password(At least 8 characters long and at least 1 upper case character, 1 numeric number)  : " password
+validateUserDetails $password $PASSWORD_AT_LEAST_ONE_UPPER_CASE_CHARACTER_ONE_NUMERIC
